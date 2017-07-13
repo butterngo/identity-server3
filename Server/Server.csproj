@@ -133,6 +133,7 @@
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\ScopeService.cs" />
+    <Compile Include="Services\TokenService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

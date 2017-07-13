@@ -21,7 +21,8 @@
                 factory.ClientStore = new Registration<IClientStore, ClientService>();
                 factory.ScopeStore = new Registration<IScopeStore, ScopeService>();
                 factory.ViewService = new Registration<IViewService, CustomViewService>();
-                
+                factory.TokenService = new Registration<ITokenService, TokenService>();
+
                 idsrvApp.UseIdentityServer(
                      new IdentityServerOptions
                      {

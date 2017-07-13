@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="http://localhost:52514/signalr/hubs"></script>
+</head>
+<body>
+    <script>
+        //$.ajax({
+        //    type: 'GET',
+        //    url: 'http://localhost:52514/api/home',
+        //    headers: {
+        //        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMzMzMvaWRlbnRpdHkiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjMzMzMvaWRlbnRpdHkvcmVzb3VyY2VzIiwiZXhwIjoxNDk5OTYwODk1LCJuYmYiOjE0OTk5NTcyOTUsImNsaWVudF9pZCI6IjEwOTk5MTZjNmRkMjQ5OThhM2U5NWQ0NTRkYTlkM2I3Iiwic2NvcGUiOiJXZWJBcGkiLCJzdWIiOiIxOWMyMTQ0NS1hNTc5LTRlNDItOTU4NC0wMGIyZDkyOTBjNGEiLCJhdXRoX3RpbWUiOjE0OTk5NTcyOTUsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.nP-Kf_WaJEJXveSiHx0sHH1HFsorIOB65IQBJ2oTS8QkYykui0L2pLVBWMFctaMjwRnIwLXiPCUwQCeUsxWN6XAvEfR8Z6UrUfnJNUnrIvLElutC-kNIOrwR05UJ4lUDwEJwSdTwpGmxUZeAitA2S5GZFUQTMBr27Gk1__Ea4VuCxIyZ8oI6ictWC65saeeczRQzvSrLYzP2llIvvm5q8j7s39WySkifjbYCvLWuKls8mxOlq42aqC45eCcAzSrxDTGHvpcnTJWpjpNaWqSX0iABBMGSrY1Kwh36n4aOCmm8CPJO7cnr36JtzQy5XHDjVe8nA-GvbShkkT5ceoR91g',
+        //    }
+        //}).then(function (data) {
+        //    console.log(data);
+        //})
+        
+        var signalR = $.hubConnection("http://localhost:52514/");
+        //me.signalR.logging = true;
+        signalR.qs = {
+            'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMzMzMvaWRlbnRpdHkiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjMzMzMvaWRlbnRpdHkvcmVzb3VyY2VzIiwiZXhwIjoxNDk5OTYwODk1LCJuYmYiOjE0OTk5NTcyOTUsImNsaWVudF9pZCI6IjEwOTk5MTZjNmRkMjQ5OThhM2U5NWQ0NTRkYTlkM2I3Iiwic2NvcGUiOiJXZWJBcGkiLCJzdWIiOiIxOWMyMTQ0NS1hNTc5LTRlNDItOTU4NC0wMGIyZDkyOTBjNGEiLCJhdXRoX3RpbWUiOjE0OTk5NTcyOTUsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.nP-Kf_WaJEJXveSiHx0sHH1HFsorIOB65IQBJ2oTS8QkYykui0L2pLVBWMFctaMjwRnIwLXiPCUwQCeUsxWN6XAvEfR8Z6UrUfnJNUnrIvLElutC-kNIOrwR05UJ4lUDwEJwSdTwpGmxUZeAitA2S5GZFUQTMBr27Gk1__Ea4VuCxIyZ8oI6ictWC65saeeczRQzvSrLYzP2llIvvm5q8j7s39WySkifjbYCvLWuKls8mxOlq42aqC45eCcAzSrxDTGHvpcnTJWpjpNaWqSX0iABBMGSrY1Kwh36n4aOCmm8CPJO7cnr36JtzQy5XHDjVe8nA-GvbShkkT5ceoR91g',
+        };
+        var hub = signalR.createHubProxy("hubchat");
+        hub.on("");
+        signalR.start()
+            .done(function () {
+                console.log('connected');
+                connection.send("success?");
+            })
+            .fail(function (a) {
+                console.log('not connected'+a);
+            });
+    </script>
+</body>
+</html>

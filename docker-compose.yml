@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  signalrclient:
+    image: signalrclient
+    build:
+      context: .\SignalRClient
+      dockerfile: Dockerfile

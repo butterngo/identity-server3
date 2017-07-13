@@ -18,29 +18,30 @@ namespace Server.Migrations
         
         protected override void Seed(Server.IdentityServerContext context)
         {
-            PasswordHasher passwordHasher = new PasswordHasher();
+            //PasswordHasher passwordHasher = new PasswordHasher();
 
-            var user = context.Users.Where(u => u.UserName.Equals("admin")).FirstOrDefault();
+            //var user = context.Users.Where(u => u.UserName.Equals("admin")).FirstOrDefault();
 
-            if (user == null)
-            {
-                user = new Models.User
-                {
-                    UserName = "admin",
-                    Email = "ngovu.dl@gmail.com",
-                    PasswordHash = passwordHasher.HashPassword("12345"),
-                    SecurityStamp = passwordHasher.HashPassword("12345"),
-                };
+            //if (user == null)
+            //{
+            //    user = new Models.User
+            //    {
+            //        UserName = "admin",
+            //        Email = "ngovu.dl@gmail.com",
+            //        PasswordHash = passwordHasher.HashPassword("12345"),
+            //        SecurityStamp = passwordHasher.HashPassword("12345"),
+            //    };
 
-                context.Users.Add(user);
+            //    context.Users.Add(user);
 
-                context.SaveChanges();
-            }
+            //    context.SaveChanges();
+            //}
 
-            CreateClient(context, "DemoWebApi", "WebApi", Flows.ResourceOwner, AccessTokenType.Jwt);
-            CreateClient(context, "DemoWebMvc", "openid", Flows.Implicit, AccessTokenType.Jwt, true);
-            CreateScope(context, "WebApi", "Secure WebApi", ScopeType.Resource);
-            CreateScope(context, "roles", "Secure roles", ScopeType.Identity);
+            //CreateClient(context, "DemoWebApi", "WebApi", Flows.ResourceOwner, AccessTokenType.Jwt);
+            //CreateClient(context, "DemoWebMvc", "openid", Flows.Implicit, AccessTokenType.Jwt, true);
+            //CreateScope(context, "WebApi", "Secure WebApi", ScopeType.Resource);
+            //CreateScope(context, "roles", "Secure roles", ScopeType.Identity);
+            CreateClient(context, "JS Client", "openid", Flows.Implicit, AccessTokenType.Jwt, true);
         }
         
         private void CreateClient(Server.IdentityServerContext context, string clientName, string scopeName,

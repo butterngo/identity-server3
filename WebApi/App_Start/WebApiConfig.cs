@@ -5,6 +5,10 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
+using System.Web.Cors;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace WebApi
 {
@@ -20,6 +24,10 @@ namespace WebApi
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            var cors = new EnableCorsAttribute("*", "*", "*");
+
+            config.EnableCors(new CorsPolicyProvider());
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -28,6 +36,19 @@ namespace WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+        }
+
+        public class CorsPolicyProvider : ICorsPolicyProvider
+        {
+            public Task<CorsPolicy> GetCorsPolicyAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                return Task.FromResult(new CorsPolicy
+                {
+                    AllowAnyHeader = true,
+                    AllowAnyMethod = true,
+                    AllowAnyOrigin = true,
+                });
+            }
         }
     }
 }
